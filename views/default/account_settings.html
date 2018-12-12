@@ -1,0 +1,140 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+<script src="{{=URL('static', 'js/vue.js')}}"></script>
+<!-- Calling our css file  -->
+<link href="{{=URL('static', 'css/myapp.css')}}" rel="stylesheet" type="text/css" />
+<!-- API to route to other pages besides the main page.  -->
+<script> 
+  var go_to_backlog_graph_page = "{{=URL('api', 'get_post_list')}}";
+  var get_user_info = "{{=URL('api', 'get_user_info')}}";
+  var set_email_to_invite_list = "{{=URL('api', 'set_email_to_invite_list')}}";
+  var get_invite_list = "{{=URL('api', 'get_invite_list')}}";
+  var check_invitation_status = "{{=URL('api', 'check_invitation_status')}}";
+  var update_invitation_response = "{{=URL('api', 'update_invitation_response')}}";
+  var set_team_details = "{{=URL('api', 'set_team_details')}}";
+  var get_team_members = "{{=URL('api', 'get_team_members')}}";
+</script>
+
+{{end}}
+
+<div id="vue-div" class="display:none">
+        
+    <!-- Create the Side Navigation Bar -->
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <span> <a href="{{=URL('default', 'landPage')}}"> Home </a> </span>
+        <span> <a href="{{=URL('default','index')}}"> Registration </a> </span>
+        <span>
+            <a href="{{=URL('default', 'dashboard')}}" > Dashboard </a>
+        </span>
+        <span v-on:click="go_to_backlog_graph">
+            <a href="{{=URL('default', 'backlog')}}" > Backlog Graph</a>
+        </span>
+        <span v-on:click="go_to_work_done_graph">
+            <a href="{{=URL('default','work_done')}}" > Work Done Graph</a>
+        </span>
+        <span v-on:click="go_to_progress_graph">
+            <a href="{{=URL('default','progress')}}" > Progress Graph </a>
+        </span>
+        <span v-on:click="go_to_account_settings">
+            <a href="{{=URL('default','account_settings')}}" > Account Settings </a>
+        </span>
+    </div>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu </span> 
+
+    <div id = "main">
+        <!-- Account Settings -->
+        <button id = "account_load" style="display: none;" @click="populate_user_info" > </button> 
+
+
+        <div class="grid-y large-grid-frame">
+
+            <div class ="cell medium-1"></div>
+
+            <div class = "cell medium-2"> 
+                <div class = "text-center">
+                    <div class = "grid-x">
+                        <p>
+                            <div class = "cell medium-6">
+                                 <h1 class = "account_class">  Class </h1>  
+                                <div id="current_class" style="font-family: Helvetica;"> </div>
+                            </div>
+                            <div class = "cell medium-6">
+                                <h1 class = "account_class">  Team  </h1>
+                                <div id = "user_team_name"> </div>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "cell medium-2"> 
+                <div class = "text-center">
+                    <!-- Button to add team members, will make current user the team owner-->
+                    <p>
+                        <h1 class = "account_class">  Members </h1>
+                        <br>
+                        <div id ="list_of_members_account_page" class="grid-x">
+                        </div>
+                    </p>
+                </div> 
+            </div>
+
+            <div class = "cell medium-1"> </div>
+
+            <div class = "cell medium-2"> 
+                <div class = "text-center">
+                    <p>
+                        <div id = "pendingInvitations">
+                            <br>
+                            <h1 class = "account_class"> Sent Invitations </h1>
+                            <button id = "populate_pending_invites" @click="check_invitation_status" style="display: none;"></button>
+                            <div id = "invitationStatus">
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+
+            <div class = "cell medium-1"> </div>
+
+            <div class = "cell medium-2">
+
+                <div class = "grid-x">
+
+                    <!-- Two buttons to Add Members / Accept Invites -->
+                    <div class = "cell medium-2"> </div>
+                    <button @click = " send_email_invite" type="button" class="secondary button cell medium-3"> Add Members </button>
+                    <div class = "cell medium-2"> </div>
+                    <button @click = "populate_invite_list" type="button" class="secondary button cell medium-3">  Accept Invitations </button>
+                    <div class = "cell medium-2"> </div>
+
+                    <!-- Form to display invite lists -->
+                    <div class = "cell">
+                        <div id = "inviteList" style="display: none;"></div>
+                    </div>
+
+                    <!-- <div  class = "cell" > -->
+                        <div class = "cell medium-4"> </div>
+                        <div class = "cell medium-3" id = "emaiL_form_account_settings" style="display:none;">
+                            <input type="text" placeholder="abc@example.com" id = "invite_email">  
+                        </div>
+                        <div class = "cell medium-2" id = "btn_emaiL_form_account_settings" style="display:none;">
+                            <a href="#" class="button postfix" @click = "invite_button"> Send Invite !</a> 
+                        </div>
+                        <div class = "cell medium-2"> </div>
+                    <!-- </div> -->
+
+                </div>
+
+            </div>
+
+        </div>
+    </div> 
+
+</div>
+
+
+
+    <script src="{{=URL('static', 'js/default_index.js')}}"></script>

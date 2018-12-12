@@ -1,0 +1,98 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+<script src="{{=URL('static', 'js/vue.js')}}"></script>
+<!-- Calling our css file -->
+<link
+  href="{{=URL('static', 'css/myapp.css')}}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<!-- API to route to other pages besides the main page. -->
+<script>
+  var go_to_backlog_graph_page = "{{=URL('api', 'get_post_list')}}";
+  var set_user_info = "{{=URL('api', 'set_user_info')}}";
+  var check_log_in = "{{=URL('api', 'check_log_in')}}";
+</script>
+
+{{ end }}
+
+<div id="vue-div" class="display:none">
+  <!-- Create the Side Navigation Bar -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+      >&times;</a
+    >
+    <span> <a href="{{=URL('default', 'landPage')}}"> Home </a> </span>
+    <span> <a href="{{=URL('default','index')}}"> Registration </a> </span>
+    <span>
+      <a href="{{=URL('default', 'dashboard')}}" id="clickme"> Dashboard </a>
+    </span>
+    <span v-on:click="go_to_backlog_graph">
+      <a href="{{=URL('default', 'backlog')}}"> Backlog Graph</a>
+    </span>
+    <span v-on:click="go_to_work_done_graph">
+      <a href="{{=URL('default','work_done')}}"> Work Done Graph</a>
+    </span>
+    <span v-on:click="go_to_progress_graph">
+      <a href="{{=URL('default','progress')}}"> Progress Graph </a>
+    </span>
+    <span v-on:click="go_to_account_settings">
+      <a href="{{=URL('default','account_settings')}}"> Account Settings </a>
+    </span>
+
+  </div>
+
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()"
+    >&#9776; Menu
+  </span>
+
+
+  <div id="main">
+    <div class = "grid-y medium-grid-frame">
+      <div class ="cell medium-2"></div>
+      <div class ="cell medium-6">
+        <div class = "grid-x">
+            <div class = "cell medium-3"> </div>
+            <div class = "cell medium-6 text-center">
+              <!-- Main Page to login with user name and password -->
+              <label class ="index_class">Email</label>
+              <input class = "text-center" type="text" id="login_email"placeholder="example@example.com"/>
+              <br />
+              <label class ="index_class" >Password</label><input class = "text-center" type="password" id="login_password" /><br />
+            </div>
+            <div class = "cell medium-3"> 
+            </div>
+          </div>
+      </div>
+      <div class ="cell medium-4">
+        <div class = "grid-x">
+          <div class = "cell medium-3"> </div>
+          <div class = "cell medium-6">
+            <div class = "grid-x text-center work_done_class">
+              <div class = "cell medium-4">
+                  <button v-on:click="log_in" class="hollow button secondary large">Log In</button>
+              </div>
+
+              <div class = "cell medium-4">
+                  <span>
+                      <a href="{{=URL('default', 'registration')}}">
+                        <button id="sign_up_btn" class=" hollow button secondary large">Sign Up</button>
+                    </a>
+                  </span>
+              </div>
+
+              <div class = "cell medium-4">
+                <!-- Log out Button -->
+                <button v-on:click="log_out" class=" hollow button secondary large">Log Out</button>
+              </div>
+            </div>
+          </div>
+          <div class = "cell medium-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{=URL('static', 'js/default_index.js')}}"></script>

@@ -1,0 +1,300 @@
+/* target the classs name  */
+.account_class:after {
+  content: ""; /* This is necessary for the pseudo element to work. */
+  display: block; /* This will put the pseudo element on its own line. */
+  margin: 0 auto; /* This will center the border. */
+  width: 50%; /* Change this to whatever width you want. */
+  padding-top: 20px; /* This creates some space between the element and the border. */
+  border-bottom: 1.5px solid black; /* This creates the border. Replace black with whatever color you want. */
+
+  /* This part is for font selection */
+}
+
+.account_class {
+  color: #4d4d4d;
+  font-family: "Raleway", sans-serif;
+  font-size: 62px;
+  font-weight: 800;
+  line-height: 72px;
+  margin: 0 0 24px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.backlog_class {
+  color: #4d4d4d;
+  font-family: "Helvetica", sans-serif;
+  font-size: 62px;
+  font-weight: 800;
+  line-height: 72px;
+  margin: 0 0 24px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.work_done_class {
+  color: #181818;
+  font-family: "Arial", sans-serif;
+  font-size: 50px;
+  font-weight: 800;
+  line-height: 72px;
+  margin: 0 0 24px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.index_class {
+  color: #181818;
+  font-family: "Arial", sans-serif;
+  font-size: 50px;
+  font-weight: 800;
+  line-height: 72px;
+  margin: 0 0 24px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.progress_class {
+  font-family: "Arial", sans-serif;
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 72px;
+  margin: 0 0 24px;
+  text-transform: uppercase;
+}
+
+/* The side navigation menu from : https://www.w3schools.com/howto/howto_js_sidenav.asp */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav span {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: blue;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left 0.5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+/* To style the canvas (graph) */
+#dashboardCanvas {
+  border: 1px solid #000000;
+}
+
+#backlogCanvas {
+  border: 1px solid #000000;
+}
+
+#workdoneCanvas {
+  border: 1px solid #000000;
+}
+
+#progressCanvas {
+  border: 1px solid #000000;
+}
+
+/* #sprint_and_story_1{
+} */
+
+button.button.primary {
+  background-color: #ff8800;
+  border: 2px solid white;
+  padding: 10px 20px 10px 20px;
+  font-size: 20px;
+}
+
+label {
+  color: #000000;
+  font-size: 40px;
+  font-weight: 900;
+}
+
+#registration_title {
+  font-weight: 900;
+  text-align: center;
+  font-size: 80px;
+}
+
+#sign_up_btn {
+  margin-left: 5px;
+}
+
+div#user_story_details_after_sprint div h2 {
+  font-weight: 900;
+  color: #181818;
+  text-decoration: #eeeeee underline;
+}
+
+#register_button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: block;
+  width: 130px;
+  margin: 10px auto 0px auto;
+}
+
+header#page-header {
+  background: url(../images/landPagePic.png) no-repeat center center fixed;
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body#landPageBody {
+  background: url(../images/landPagePic.png) no-repeat center center fixed;
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+h1#landPageTitle {
+  color: whitesmoke;
+  font-size: 110px;
+  font-weight: bold;
+}
+
+button#landPageButton {
+  font-weight: bold;
+  font-size: 50px;
+  margin-top: 100px;
+  color: #eeeeee;
+  border-color: #eeeeee;
+}
+
+header#page-header div#headerTitle {
+  /* position: relative; */
+  /* top: 50%; */
+  /* transform: translateY(-50%); */
+  text-align: center;
+  margin: 300px auto;
+}
+
+body {
+  background-color: whitesmoke;
+  font-family: "Work Sans", sans-serif;
+}
+/* Code to control pop up form: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_popup */
+
+/* Popup container - can be anything you want */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  display: inline-block;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

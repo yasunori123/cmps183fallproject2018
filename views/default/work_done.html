@@ -1,0 +1,121 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+<script src="{{=URL('static', 'js/vue.js')}}"></script>
+<!-- Calling our css file  -->
+<link href="{{=URL('static', 'css/myapp.css')}}" rel="stylesheet" type="text/css" />
+<!-- API to route to other pages besides the main page.  -->
+<script> 
+  var get_work_done_data = "{{=URL('api', 'get_work_done_data')}}";
+    //   Get project details
+    var get_project_details = "{{=URL('api', 'get_project_details')}}";
+    // Set completed work so far 
+    var set_work_done_data = "{{=URL('api', 'set_work_done_data')}}";
+    // Get work completed so far
+    var get_work_done_data = "{{=URL('api', 'get_work_done_data')}}";
+    // Get total story points for a sprint
+    var total_story_points_for_sprint = "{{=URL('api', 'total_story_points_for_sprint')}}";
+    var get_team_members = "{{=URL('api', 'get_team_members')}}";
+    var set_team_contribution = "{{=URL('api', 'set_team_contribution')}}";
+    var get_team_contribution = "{{=URL('api', 'get_team_contribution')}}";
+    var get_user_work_done = "{{=URL('api', 'get_user_work_done')}}";
+    
+</script>
+
+{{end}}
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<div id="vue-div" class="display:none">
+    <!-- Menu  -->
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu </span> 
+    <!-- Create the Side Navigation Bar -->
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <span> <a href="{{=URL('default', 'landPage')}}"> Home </a> </span>
+        <span> <a href="{{=URL('default','index')}}"> Registration </a> </span>
+        <span >
+        <a href="{{=URL('default', 'dashboard')}}" > Dashboard </a>
+        </span>
+        <span v-on:click="go_to_backlog_graph">
+            <a href="{{=URL('default', 'backlog')}}" > Backlog Graph</a>
+        </span>
+        <span v-on:click="go_to_work_done_graph">
+            <a href="{{=URL('default','work_done')}}" > Work Done Graph</a>
+        </span>
+        <span v-on:click="go_to_progress_graph">
+            <a href="{{=URL('default','progress')}}" > Progress Graph </a>
+        </span>
+        <span v-on:click="go_to_account_settings">
+            <a href="{{=URL('default','account_settings')}}" > Account Settings </a>
+        </span>
+    </div>
+
+    <div id  = "main">
+        <span v-on:click="go_to_progress_graph" style="display: none;">
+            <a href="{{=URL('default', 'progress')}}" id="progressDirect">Backlog Graph</a>
+        </span>
+
+        <!-- Call graph and table drawing methods -->
+        <button id="work_done_load" style="display: none;" @click="load_chart_for_work_done"></button>
+        
+        <!-- Load Line Chart  -->
+        <div id="work_done_chart"></div>
+
+        <!-- Filler in case user has not filled out dashboard information -->
+        <div  class = "text-center" id="fillerWorkDone"></div>
+
+        <div class="grid-y medium-grid-frame" id = "WorkDoneToggle" style="display:none" >
+
+            <div class ="cell medium-1"></div>
+
+            <div class ="cell medium-2 text-center">
+                <!--  Display Data Table -->
+                <div id="work_done_table"></div>
+                <button v-on:click="update_wd_table" class ="blue button" id="wd_table"> Submit </button>
+            </div>
+
+            <!-- Contribution Amount -->
+
+            <div class = "cell medium-2"></div>
+
+            <div class = "grid-container fluid ">
+
+                <div class = "grid-x grid-padding-x">
+
+                    <div class="cell medium-6">
+                        <div class = "grid-y medium-grid-frame">
+                            <div class = "cell medium-3"> </div>
+                            <div class = "cell medium-4 text-center"> 
+                                <div id = "self_contribution_work_done" style= "display:none;">
+                                    <h1 class="work_done_class"> How Many Story Points Have You Finished? </h1>
+                                    <input class="text-center" id = "piechart_info" type="number" name="quantity" min="0">
+                                    <button class="blue button" @click="work_done_pie_chart"> Submit Details !  </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class = "cell medium-6">
+                        <!-- Displaying Pie Chart  -->
+                        <div class = "grid-x">
+                            <div class = "cell medium-2"></div>
+                            <div class = "cell medium-3">
+                                <div id="piechart_work_done" style="width: 900px; height: 500px;"></div>
+                            </div>
+                            <div class = "cell medium-2"> </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        
+    </div>
+
+
+</div>
+
+<script src="{{=URL('static', 'js/default_index.js')}}"></script>

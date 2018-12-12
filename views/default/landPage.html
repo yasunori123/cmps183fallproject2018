@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="{{=URL('static', 'js/vue.js')}}"></script>
+    <!-- Calling our css file -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Work+Sans:400,900"
+      rel="stylesheet"
+    />
+    <link
+      href="{{=URL('static', 'css/foundation.css')}}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{{=URL('static', 'css/myapp.css')}}"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body id="landPageBody">
+    <div id="vue-div" class="display:none">
+      <div id="main">
+        <!-- Get project information -->
+        <header id="page-header">
+          <div class="row">
+            <div class="small-12 columns" id="headerTitle">
+              <h1 id="landPageTitle">Burnup Chart Generator</h1>
+              <span>
+                <a href="{{=URL('default','index')}}">
+                  <button class="hollow secondary button" id="landPageButton">
+                    Get Started
+                  </button>
+                </a></span
+              >
+            </div>
+          </div>
+        </header>
+      </div>
+    </div>
+  </body>
+  <script src="{{=URL('static', 'js/default_index.js')}}"></script>
+  <script src="{{=URL('static', 'js/foundation.min.js')}}"></script>
+  <script src="{{=URL('static', 'js/jquery.js')}}"></script>
+</html>

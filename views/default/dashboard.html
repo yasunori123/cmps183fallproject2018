@@ -1,0 +1,114 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+<script src="{{=URL('static', 'js/vue.js')}}"></script>
+
+<!-- Calling our css file -->
+<link
+  href="{{=URL('static', 'css/myapp.css')}}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<!-- API to route to other pages besides the main page. -->
+<script>
+  var set_project_details = "{{=URL('api', 'set_project_details')}}";
+  var set_user_story_points = "{{=URL('api', 'set_user_story_points')}}";
+  var get_project_date_details = "{{=URL('api', 'get_project_date_details')}}";
+  var get_all_sprints = "{{=URL('api', 'get_all_sprints')}}";
+  
+</script>
+
+{{ end }}
+
+<div id="vue-div" class="display:none">
+  <!-- Menu -->
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()"
+    >&#9776; Menu
+  </span>
+  <!-- Create the Side Navigation Bar -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+      >&times;</a
+    >
+    <span> <a href="{{=URL('default', 'landPage')}}"> Home </a> </span>
+    <span> <a href="{{=URL('default','index')}}"> Registration </a> </span>
+    <span> <a href="{{=URL('default', 'dashboard')}}"> Dashboard </a> </span>
+    <span v-on:click="go_to_backlog_graph">
+      <a href="{{=URL('default', 'backlog')}}" id="backlogDirect">
+        Backlog Graph</a
+      >
+    </span>
+    <span v-on:click="go_to_work_done_graph">
+      <a href="{{=URL('default','work_done')}}"> Work Done Graph</a>
+    </span>
+    <span v-on:click="go_to_progress_graph">
+      <a href="{{=URL('default','progress')}}"> Progress Graph </a>
+    </span>
+    <span v-on:click="go_to_account_settings">
+      <a href="{{=URL('default','account_settings')}}"> Account Settings </a>
+    </span>
+  </div>
+
+  <div id="main">
+    <div class = "grid-x">
+
+      <div class = "cell medium-1">
+        <button id = "dashboard_load" v-on:click= "load_existing_dashboard_data" style="display: none">Test !</button> 
+      </div>
+
+      <div class = "cell medium-4 text-center ">
+        <!-- Number of sprints -->
+        <div>
+          <label class="work_done_class">Number of Sprints</label>
+          <input type="number" id="numberOfSprints" min="1" />
+          <button v-on:click="add_user_story_for_sprints" class="button secondary">
+            Add User Stories
+          </button>
+          <div>
+            <div class = "grid-x  text-center"  id="user_story_details_after_sprint">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class = "cell medium-2"></div>
+
+      <div class = "cell medium-4">
+
+        <div class = "grid-y medium-grid-frame">
+          <div class = "cell medium-10 ">
+            <!-- Length of sprints -->
+            <div>
+              <label class="work_done_class">Duration</label>
+              <input  class = "text-center" type="number" id="lengthOfSprint" min="1" />
+            </div>
+      
+            <!-- Beginning date of sprints -->
+            <div>
+              <label class="work_done_class">Sprint Start</label>
+              <input  class = "text-center" type="date" id="sprintStartDate" />
+            </div>
+          </div>
+
+          <div class = "cell medium-1">
+            <!-- Submit all info to our JS file -->
+            <div class = "grid-x">
+              <button v-on:click="set_user_story_details" class="button secondary cell">
+                  Submit All Details!
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class = "cell medium-1"></div>
+
+    </div>
+  </div>
+</div>
+
+<script src="{{=URL('static', 'js/default_index.js')}}"></script>

@@ -1,0 +1,91 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+    <script src="{{=URL('static', 'js/vue.js')}}"></script>
+    <!-- Calling our css file  -->
+    <link href="{{=URL('static', 'css/myapp.css')}}" rel="stylesheet" type="text/css" />
+    <!-- API to route to other pages besides the main page.  -->
+
+    <script> 
+      var go_to_backlog_graph_page = "{{=URL('api', 'get_post_list')}}";
+      var get_work_done_data = "{{=URL('api', 'get_work_done_data')}}";
+      var get_story_points = "{{=URL('api', 'get_story_points')}}";
+      //   Get project details
+      var get_project_details = "{{=URL('api', 'get_project_details')}}";
+      var get_project_date_details = "{{=URL('api', 'get_project_date_details')}}";
+    </script>
+
+
+{{end}}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="{{=URL('static', 'js/default_index.js')}}"></script>
+
+
+<div id="vue-div" class="display:none">
+      <!-- Menu  -->
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu </span> 
+        <!-- Create the Side Navigation Bar -->
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <span> <a href="{{=URL('default', 'landPage')}}"> Home </a> </span>
+            <span> <a href="{{=URL('default','index')}}"> Registration </a> </span>
+            <span >
+            <a href="{{=URL('default', 'dashboard')}}" > Dashboard </a>
+            </span>
+            <span v-on:click="go_to_backlog_graph">
+                <a href="{{=URL('default', 'backlog')}}" > Backlog Graph</a>
+            </span>
+            <span v-on:click="go_to_work_done_graph">
+                <a href="{{=URL('default','work_done')}}" > Work Done Graph</a>
+            </span>
+            <span v-on:click="go_to_progress_graph">
+                <a href="{{=URL('default','progress')}}" > Progress Graph </a>
+            </span>
+            <span v-on:click="go_to_account_settings">
+                <a href="{{=URL('default','account_settings')}}" > Account Settings </a>
+            </span>
+        </div>
+
+
+    <div id  = "main" ></div>
+    <div id="progressToggle"  >   </div>
+
+        <div class = "grid-y medium-grid-frame" id = "toggleOnProgress" style = "display: none">
+            <div class = "cell medium-2"></div>
+
+            <div class = "cell medium-10">
+                <div class = "grid-x">
+                    <div class = "cell medium-1"></div>
+                    <div class = "cell medium-10">
+                        <!-- Filler for if user has not filled out work complete -->
+                        <!-- Load Progress Chart  -->
+                        <div class = "grid-x">
+                            <div class = "cell medium-5">
+                                <div id="progressChart"></div>
+                                <div class = "text-center" id="fillerProgress"></div>
+                            </div>
+                            <div class = "cell medium-2"></div>
+                            <div class = "cell medium-5 text-center progress_class">
+                                <button id="load_progress"  style="display: none;" @click="get_progress_data"> </button>
+                                <div class = "grid-x">
+                                    <div style = "color:green;" class = "cell medium-4"> Ahead </div>
+                                    <div style = "color:red;" class = "cell medium-4"> Behind </div>
+                                    <div style = "color:#FF8C00;" class = "cell medium-4"> On-Time </div>
+                                </div>
+                                <br>
+                                <div id="project_status"> </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "cell medium-1"></div>
+                </div>
+            </div>
+
+            <div class = "cell medium-1"></div>
+
+        </div>
+    </div>
+
+
+</div>
+
